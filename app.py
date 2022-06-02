@@ -30,7 +30,17 @@ app = Flask(__name__)
 #Flask Routes
 @app.route("/")
 def home():
-    """List all available api routes"""
     return (
-        f"Available Routes:"
+        f"All available routes:<br/>"
+        f"Available Routes:<br/>"
+        f"/api/v1.0/precipitation"
     )
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+    last_year_data = dt. date(2017,8,23) - dt.timedelta(days=365)
+    prcp_values = session.query(Measurement.date, Measurement.prcp).\
+        filter(Measurement.date >= last_year_data).\
+        order_by(Measurement.date).all()
+    prcp_val_list = dict(prcp_values)
+    return jsonify(prcp_val_list)
