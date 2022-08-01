@@ -89,5 +89,5 @@ def start_end(start, end):
     return jsonify(start_end_lst)
 
 #Define Behavior
-if __name__ == '_main_':
+if __name__ == "__main__":
     app.run(debug=True)
